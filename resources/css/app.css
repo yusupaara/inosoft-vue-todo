@@ -1,0 +1,43 @@
+.container{
+    width: 500px;
+    margin: 0 auto;
+}
+
+.form input{
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.form button{
+    width: 100%;
+    padding: 10px;
+    background: #0098cb;
+    border: none;
+    color: #fff;
+}
+
+.list {
+    margin-top: 20px;
+}
+
+.list li {
+    list-style: none;
+    background: #f4f4f4;
+    padding: 10px;
+    border-bottom: #ccc dotted 1px;
+}
+
+.list li .delete {
+    float: right;
+}
+
+.list li .edit {
+    float: right;
+    margin-right: 10px;
+}
+
+.list li .done {
+    float: right;
+    margin-right: 10px;
+}
