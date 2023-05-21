@@ -20443,10 +20443,11 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     };
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
-    list: 'getToDo'
+    list: 'getData'
   })),
   mounted: function mounted() {
     console.log('Component mounted.');
+    this.$store.dispatch('getList');
   },
   methods: {
     addList: function addList(datainput) {
@@ -20738,20 +20739,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vuex__WEBPACK_IMPORTED_MODULE_0__.createStore)({
   state: {
-    list: [{
-      title: 'menyapu'
-    }, {
-      title: 'cuci piring'
-    }, {
-      title: 'pel'
-    }]
+    list: [
+      // { title: 'menyapu' },
+      // { title: 'cuci piring' },
+      // { title: 'pel' },
+    ]
   },
   getters: {
-    getToDo: function getToDo(state) {
+    getData: function getData(state) {
       return state.list;
     }
   },
@@ -20761,6 +20768,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     deleteList: function deleteList(context, payload) {
       context.commit("DELETE_TODO", payload);
+    },
+    getList: function getList(context) {
+      var url = "api/getAllData";
+      axios__WEBPACK_IMPORTED_MODULE_1__["default"].get(url).then(function (response) {
+        context.commit("UPDATE_TODO", response.data);
+      });
     }
   },
   mutations: {
@@ -20769,6 +20782,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     DELETE_TODO: function DELETE_TODO(state, payload) {
       state.list.splice(payload, 1);
+    },
+    UPDATE_TODO: function UPDATE_TODO(state, payload) {
+      state.list = _toConsumableArray(payload);
     }
   }
 }));

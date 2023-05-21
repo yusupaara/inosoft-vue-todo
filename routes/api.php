@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/getAllData', 'Mocking\Controllers\Controller@getDataControl');
+// Route::post('/postData', 'Mocking\Controllers\Controller@postData');
+// Route::put('/putData', 'Mocking\Controllers\Controller@putData');
+// Route::patch('/patchData', 'Mocking\Controllers\Controller@patchData');
+// Route::delete('/deleteData/{id?}', 'Mocking\Controllers\Controller@deleteData');

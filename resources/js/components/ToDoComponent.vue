@@ -21,11 +21,12 @@ export default {
     },
     computed:{
         ...mapGetters({
-            list: 'getToDo'
+            list: 'getData'
         })
     },
     mounted(){
         console.log('Component mounted.')
+        this.$store.dispatch('getList')
     },
     methods:{
         addList(datainput){
